@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sharp Test</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <h1>💖</h1>
+    <button id="sharp-test-button">Click to run Sharp test</button>
+    <p></p>
+    <div class="column" id="main-view">
+      <br /><img id="main-img"><br />
+    </div>
+
+    <script>
+      const fetch = require("node-fetch");
+      const { v4: uuidv4 } = require('uuid');
+      // https://chrisfrew.in/blog/saving-images-in-node-js-using-fetch-with-array-buffer-and-buffer/
+      async function savePhotoFromURL(photo_url) {
+        const response = await fetch(photo_url);
+        const arrayBuffer = await response.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        return buffer;
+      }
+
+      const homeDir = require('os').homedir();
+      const desktopDir = `${homeDir}/Desktop`;
+      async function runSharpTest() {
+        console.log('(running sharp)');
+        const Sharp = require('../node_modules/sharp');
+        const fs = require('fs');
+        var width = 6000;
+        var height = 4000;
+        var crop = "cover";
+        var quality = 60;
+        var format = "webp";
+        var photo_url = "https://picsum.photos/200/300"
+        var random_uuid = uuidv4();
+
+        var obj = await savePhotoFromURL(photo_url);
+        var out_file = Sharp(obj)
+                // .resize(width, height, {
+                //   fit: crop,
+                //   position: 'right top',
+                //   background: { r: 255, g: 0, b: 255, alpha: 0.5 }
+                // })
+
+                .toFormat(format, {
+                  quality: parseInt(quality)
+                })
+
+                //srgb, rgb, cmyk, lab, b-w, rgb16
+                // .toColourspace('b-w')
+
+                // .raw()
+
+                // .tile({
+                //   size: 512
+                // })
+
+                .toBuffer()
+
+                .then(data => {
+                  fs.writeFileSync(`${desktopDir}/${random_uuid}.${format}`, data);
+                  document.getElementById("main-img").src = `${desktopDir}/${random_uuid}.${format}`;
+                })
+                .catch(err => { console.log(err)});
+      };
+
+      var sharp_test_button = document.getElementById('sharp-test-button');
+      sharp_test_button.addEventListener('click', runSharpTest);
+
+    </script>
+  </body>
+</html>
