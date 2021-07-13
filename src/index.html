@@ -3,18 +3,18 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta content="width=device-width" name="viewport">
     <title>Image Genie</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
     <link href="cropper.css" rel="stylesheet">
+    <link href="dropzone.css" rel="stylesheet">
+
     <script src="cropper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <script src="holder.js"></script>
-    <!-- <script src="gmindex.js"></script> -->
-    <link rel="stylesheet" href="dropzone.css">
-
     <script src="bulma-toast.min.js"></script>
 </head>
 
@@ -50,36 +50,18 @@
         float: right;
     }
 
-    .float-left {
-        float: left;
-    }
-
-    .footer {
-        padding: 5rem 1.5rem 6rem;
-    }
-
-    .dz-message {
-        color: black;
-    }
-
-    .dropzone .dz-preview .dz-image  {
+    .dropzone .dz-preview .dz-image {
         width: 300px !important;
         height: 300px !important;
 
     }
 
     .header {
-        background-color: rgb(0, 0, 0, 0.15)
+        background-color: rgba(0, 0, 0, 0.15);
     }
 
     #logo-img {
         width: 100px;
-    ;
-        /* background-color: black; */
-    }
-
-    #main-photo {
-        /* background-color: black; */
     }
 
     #main-ui {
@@ -87,12 +69,11 @@
     }
 
     #main-drop {
-        /* background-color: #151414c9; */
+        /*border: solid white 20px;*/
+        /*border-bottom: solid white 140px;*/
         background-color: #1514143d;
         position: relative;
         left: -20px;
-        /* border: solid white 20px; */
-        /* border-bottom: solid white 140px; */
     }
 
     .modal {
@@ -112,11 +93,8 @@
         background-color: rgba(0, 0, 0, 0.5);
     }
 
-    .modal-card-title {}
-
     #about-modal-title {
         font-size: 3rem;
-
     }
 
     .tabs a {
@@ -134,10 +112,8 @@
 
     /* Ensure the size of the image fits the container perfectly */
     #image {
+        max-width: 100%;  /* This rule is very important, please don't ignore this */
         display: block;
-
-        /* This rule is very important, please don't ignore this */
-        max-width: 100%;
     }
 </style>
 
@@ -147,18 +123,18 @@
     <div class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">About this application:</p>
-            <button class="delete" id="close-modal" aria-label="close"></button>
+            <button aria-label="close" class="delete" id="close-modal"></button>
         </header>
         <section class="modal-card-body has-text-white">
-            <img src="imgs/logo.png" />
-            <div id="about-modal-title" class='has-text-white'>Image Genie</div>
+            <img src="imgs/logo.png"/>
+            <div class='has-text-white' id="about-modal-title">Image Genie</div>
 
             An image editor and manipulator created by David Bodey and Eric Gonzalez.
-            <br /><br />Powered by:<br />
-            Electron. NodeJS. Bulma. HTML. JS. CSS. Imagemagick. DropzoneJS.<br /> <br />
+            <br/><br/>Powered by:<br/>
+            Electron. NodeJS. Bulma. HTML. JS. CSS. Imagemagick. DropzoneJS.<br/> <br/>
 
-            Special Thanks: <br />
-            https://github.com/KnicKnic/WASM-ImageMagick<br /><br />
+            Special Thanks: <br/>
+            https://github.com/KnicKnic/WASM-ImageMagick<br/><br/>
 
         </section>
     </div>
@@ -166,7 +142,7 @@
 
 <!-- Main Header -->
 <nav class="navbar header">
-    <img class="" id="logo-img" src="imgs/logo.png" />
+    <img class="" id="logo-img" src="imgs/logo.png"/>
 
     <!-- Logo -->
     <div class="container">
@@ -216,7 +192,7 @@
     <div class="column is-5" id="main-ui">
         <button class="button is-info is-outlined is-medium float-right">Apply Changes</button>
         <button class="button is-primary is-outlined is-medium float-right">Preview Changes</button>
-        <button id="reset-button" class="button is-warning is-5 is-outlined is-medium float-right">Reset</button>
+        <button class="button is-warning is-5 is-outlined is-medium float-right" id="reset-button">Reset</button>
     </div>
 </nav>
 
@@ -224,7 +200,7 @@
     <div class="container has-text-centered">
         <!-- PHOTOS -->
         <div class="column" id="main-view">
-            <br /><img id="main-img"><br />
+            <br/><img id="main-img"><br/>
         </div>
 
         <!-- UI CONTROLS -->
@@ -238,30 +214,22 @@
         <div class="dz-message" data-dz-message>
           <span>
             <svg style="width: 75px; height: 75px; color:white;" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                    d="M7,15L11.5,9L15,13.5L17.5,10.5L21,15M22,4H14L12,2H6A2,2 0 0,0 4,4V16A2,2 0 0,0 6,18H22A2,2 0 0,0 24,16V6A2,2 0 0,0 22,4M2,6H0V11H0V20A2,2 0 0,0 2,22H20V20H2V6Z" />
+              <path d="M7,15L11.5,9L15,13.5L17.5,10.5L21,15M22,4H14L12,2H6A2,2 0 0,0 4,4V16A2,2 0 0,0 6,18H22A2,2 0 0,0 24,16V6A2,2 0 0,0 22,4M2,6H0V11H0V20A2,2 0 0,0 2,22H20V20H2V6Z"
+                    fill="currentColor"/>
             </svg>
           </span>
         </div>
     </form>
-
 
     <!-- smllr test -->
     <button id="sharp-test-button">Click to run Sharp test</button>
 
 </div>
 
-<!-- Wrap the image or canvas element with a block element (container) -->
-<!-- <div>
-  <img id="image" src="imgs/maxresdefault.jpg">
-</div> -->
-
-
 <script type="module">
     // REQUIRED CONSTANTS AND IMPORTS
-    const { ipcRenderer } = require('electron');
+    const {ipcRenderer} = require('electron');
     var path = require("path");
-
     const IS_OFFLINE = true;
     let runRotate, runScale;
 
@@ -270,80 +238,45 @@
         runRotate = () => {
             let image = document.getElementById('main-img');
             const image_path = image.src;
-            console.log("[Running offline Rotate]");
-            // ipcRenderer.send('runRotate')
-            // var image = image_path;
+            L("[Running offline Rotate]");
             var degrees = document.getElementById('rotate-input').value;
 
-            ipcRenderer.invoke('runRotate', [image_path,degrees]).then((result) => {
-                console.log(`result: ${result}`)
+            ipcRenderer.invoke('runRotate', [image_path, degrees]).then((result) => {
+                L(`result: ${result}`)
                 image.src = result;
             })
             image.offsetHeight;
 
         }
-
         runScale = () => {
-            console.log("[Running offline Scale]");
-
+            L("[Running offline Scale]");
         }
     }
 
-    // renderer process
-    // var ipcRenderer = require('electron').ipcRenderer;
-    // ipcRenderer.on('gm', function (event,gm) {
-    //   console.log(gm);
-    // });
-    // import * as gm from '../node_modules/gm';
-    // console.log(gm);
     // Imports
     import * as Magick from './wasm-imagemagick/dist/magickApi.js';
-    // import testPrint from './index_smllr.js';
-    // import gm from './gmindex.js'
 
-    // import 'cropperjs/dist/cropper.css';
-    // import Cropper from './cropperjs.js';
-
-    // testPrint();
-
+    // Necessary variables/constants
     const image = document.getElementById('image');
-    // const cropper = new Cropper(image, {
-    //   aspectRatio: 16 / 9,
-    //   crop(event) {
-    //     // console.log(event.detail.x);
-    //     // console.log(event.detail.y);
-    //     // console.log(event.detail.width);
-    //     // console.log(event.detail.height);
-    //     // console.log(event.detail.rotate);
-    //     // console.log(event.detail.scaleX);
-    //     // console.log(event.detail.scaleY);
-    //   },
-    // });
-
-    // console.log(buildInputFile)
-    // import * as Magick from 'https://knicknic.github.io/wasm-imagemagick/magickApi.js';
-    // import {call, execute} from 'wasm-imagemagick'
-    //import extractInfo from'https://knicknic.github.io/wasm-imagemagick/magickApi.js';
-
     var initial_image = true;
     let test_img = 'imgs/maxresdefault.jpg';
 
-    // Shortcut alternative to console.log used to toggle debugging logs
+    // Shortcut alternative to L used to toggle debugging logs
     const DEBUGGING = true;
     let L = (msg) => {
-        if (DEBUGGING) console.log(msg);
+        if (DEBUGGING) L(msg);
     }
 
 
     // Launch modal into frame
     function showModal(modal = 'about-modal') {
-        document.getElementById('about-modal').classList.add('is-active'); // TODO - make modular and remove hard-code
+        document.getElementById(modal).classList.add('is-active'); // TODO - make modular and remove hard-code
     }
 
 
     // Remove modal from frame
     function removeModal(modal = 'about-modal') {
-        document.getElementById('about-modal').classList.remove('is-active');
+        document.getElementById(modal).classList.remove('is-active');
     }
 
 
@@ -355,7 +288,8 @@
 
         // Updates view with processed files
         injection.src = URL.createObjectURL(image['blob']);
-    };
+    }
+
 
     // Fetch the image for which to retrieve EXIF data, and call image magick
     async function UpdateOverviewDisplay(inject_at, name, path) {
@@ -369,18 +303,8 @@
         const filesize = img_json['filesize'];
         document.getElementById('overview-display').innerHTML += filesize;
         L(stdout)
-    };
+    }
 
-    // CURRENTLY SAME AS UpdateDisplay()
-    // Fetch the image to colorize, and call image magick
-    // async function UpdateColorDisplay(inject_at, filename, command) {
-    //   let injection = document.getElementById(inject_at);
-    //   const results = await Magick.Call(filename, command);
-    //   const image = results[0];
-
-    //   // Updates view with processed files
-    //   injection.src = URL.createObjectURL(image['blob']);
-    // };
 
     // Converts image from path to bytes
     let getBytes = async function (path) {
@@ -406,7 +330,7 @@
 
         L('Attempting to display EXIF data')
 
-        UpdateOverviewDisplay(inject_at, filename, path);
+        await UpdateOverviewDisplay(inject_at, filename, path);
     }
 
     let setStageOverview = () => {
@@ -425,7 +349,7 @@
         Overview();
     }
 
-    async function Scale() { // Necessary for Imagemagick call
+    async function Scale() {
         const width_val = document.getElementById('scale-width').value;
         const height_val = document.getElementById('scale-height').value;
 
@@ -450,8 +374,9 @@
         L('[Attempting to scale]');
 
         // Uses Imagemagick and updates view
-        if (scale_vals) UpdateDisplay(inject_at, files, command);
+        if (scale_vals) await UpdateDisplay(inject_at, files, command);
     }
+
 
     let setStageScale = () => {
         // Setup stage
@@ -485,6 +410,7 @@
         document.getElementById('main-title').appendChild(scale_button);
     }
 
+
     async function Color() { // Necessary for Imagemagick call
         const red_val = document.getElementById('color-input-red').value;
         const green_val = document.getElementById('color-input-green').value;
@@ -511,7 +437,7 @@
         L('[Attempting to color]');
 
         // Uses Imagemagick and updates view
-        if (rgb_vals) UpdateDisplay(inject_at, files, command);
+        if (rgb_vals) await UpdateDisplay(inject_at, files, command);
     }
 
     let setStageColor = () => {
@@ -545,7 +471,7 @@
         document.getElementById('main-title').appendChild(input_bar_blue);
 
         // Create color Button
-        var color_button = document.createElement('button');
+        const color_button = document.createElement('button');
         color_button.className = "button is-primary is-rounded is-medium is-outlined";
         color_button.id = "color-button";
         color_button.innerHTML = "Colorize the Image";
@@ -575,7 +501,7 @@
         ];
 
         // Uses Imagemagick and updates view
-        UpdateDisplay(inject_at, files, command);
+        await UpdateDisplay(inject_at, files, command);
     }
 
 
@@ -585,7 +511,7 @@
         document.getElementById('quality-list-item').classList.add('is-active');
 
         // Create input Bar
-        var input_bar = document.createElement('input');
+        const input_bar = document.createElement('input');
         input_bar.type = "text";
         input_bar.id = "quality-input";
         input_bar.placeholder = "Enter desired quality (0-100%)";
@@ -594,7 +520,7 @@
         document.getElementById('main-title').appendChild(input_bar);
 
         // Create quality Button
-        var quality_button = document.createElement('button');
+        const quality_button = document.createElement('button');
         quality_button.className = "button is-primary is-rounded is-medium is-outlined";
         quality_button.id = "quality-button";
         quality_button.innerHTML = "Adjust Image Quality";
@@ -603,6 +529,7 @@
         document.getElementById('main-title').appendChild(quality_button);
 
     }
+    
 
     // Rotates image from path by degrees -------------------------------------------------------------------
     async function Rotate() { // Necessary for Imagemagick call
@@ -636,7 +563,7 @@
         document.getElementById('rotate-list-item').classList.add('is-active');
 
         // Create input Bar
-        var input_bar = document.createElement('input');
+        const input_bar = document.createElement('input');
         input_bar.type = "text";
         input_bar.id = "rotate-input";
         input_bar.placeholder = "Enter degrees to rotate NOW!!!!!!!please";
@@ -645,7 +572,7 @@
         document.getElementById('main-title').appendChild(input_bar);
 
         // Create rotate Button
-        var rotate_button = document.createElement('button');
+        const rotate_button = document.createElement('button');
         rotate_button.className = "button is-primary is-rounded is-medium is-outlined";
         rotate_button.id = "rotate-button";
         rotate_button.innerHTML = "Rotate the Image";
@@ -659,10 +586,10 @@
     }
 
     let resetImage = () => {
-        if(initial_image== true) {
+        if (initial_image == true) {
             document.getElementById("main-img").src = test_img;
-        }
-        else {
+        } else {
+            L(file_uploaded);
             document.getElementById("main-img").src = file_uploaded;
         }
         // document.getElementById("main-img").src = test_img;
@@ -673,7 +600,8 @@
     }
 
     const fetch = require("node-fetch");
-    const { v4: uuidv4 } = require('uuid');
+    const {v4: uuidv4} = require('uuid');
+
     // https://chrisfrew.in/blog/saving-images-in-node-js-using-fetch-with-array-buffer-and-buffer/
     async function savePhotoFromURL(photo_url) {
         const response = await fetch(photo_url);
@@ -684,51 +612,37 @@
 
     const homeDir = require('os').homedir();
     const desktopDir = `${homeDir}/Desktop`;
+
     async function runSharpTest() {
-        console.log('(running sharp)');
+        L('(running sharp)');
         const Sharp = require('../node_modules/sharp');
         const fs = require('fs');
-        var width = 6000;
-        var height = 4000;
-        var crop = "cover";
-        var quality = 60;
-        var format = "webp";
-        var photo_url = "https://picsum.photos/200/300"
-        var random_uuid = uuidv4();
+        const random_uuid = uuidv4();
 
-        var obj = await savePhotoFromURL(photo_url);
-        var out_file = Sharp(obj)
-            // .resize(width, height, {
-            //   fit: crop,
-            //   position: 'right top',
-            //   background: { r: 255, g: 0, b: 255, alpha: 0.5 }
-            // })
-
+        let width = 6000;
+        let height = 4000;
+        let crop = "cover";
+        let quality = 60;
+        let format = "webp";
+        let photo_url = "https://picsum.photos/200/300"
+        let obj = await savePhotoFromURL(photo_url);
+        let out_file = Sharp(obj)
             .toFormat(format, {
                 quality: parseInt(quality)
             })
-
-            //srgb, rgb, cmyk, lab, b-w, rgb16
-            // .toColourspace('b-w')
-
-            // .raw()
-
-            // .tile({
-            //   size: 512
-            // })
-
             .toBuffer()
-
             .then(data => {
                 fs.writeFileSync(`${desktopDir}/${random_uuid}.${format}`, data);
                 document.getElementById("main-img").src = `${desktopDir}/${random_uuid}.${format}`;
             })
-            .catch(err => { console.log(err)});
-    };
+            .catch(err => {
+                L(err)
+            });
+        L(out_file);
+    }
 
 
     // EVENT LISTENERS AT START
-
     document.getElementById('color-list-item').addEventListener('click', setStageColor);
     document.getElementById('quality-list-item').addEventListener('click', setStageQuality);
     document.getElementById('overview-list-item').addEventListener('click', setStageOverview);
@@ -736,42 +650,31 @@
     document.getElementById('scale-list-item').addEventListener('click', setStageScale);
     document.getElementById('about-modal-button').addEventListener('click', showModal);
     document.getElementById('close-modal').addEventListener('click', removeModal);
-
     document.getElementById('reset-button').addEventListener('click', resetImage);
 
-    //sharp test code
-    var sharp_test_button = document.getElementById('sharp-test-button');
+    //Sharp test code
+    const sharp_test_button = document.getElementById('sharp-test-button');
+    let file_uploaded;
+
     sharp_test_button.addEventListener('click', runSharpTest);
 
-    var file_uploaded;
-
+    //Dropzone initialization
     Dropzone.options.mainDrop = { // use camelcase from dropzone to find instead of hyphen
-        init: function(){
-            this.on("addedfile", function(file) { initial_image = false; document.getElementById("main-img").src = file.path; file_uploaded = file.path; });
+        init: function () {
+            this.on("addedfile", function (file) {
+                initial_image = false;
+                document.getElementById("main-img").src = file.path;
+                file_uploaded = file.path;
+            });
             // this.on("addedfile", function(file) { alert(document.getElementById("main-img").src + " VS " + file.path); });
         },
         thumbnailWidth: 300,
         thumbnailHeight: 300
     }
-    //
-
-
-
 
     // RUN
     // let test_img = 'imgs/maxresdefault.jpg';
     document.getElementById("main-img").src = test_img;
-    // output all available image properties
-    // console.log(test_img)
-
-    // gm('./imgs/maxresdefault.jpg')
-    // .identify(function (err, data) {
-    //   if (!err) console.log(data)
-    // });
-
-    // Quality(test_img, 'main-img', '15');
-    // Pencil(test_img, 'main-img', '40');
-
 </script>
 </body>
 
