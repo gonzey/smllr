@@ -48,7 +48,9 @@
     "electron-squirrel-startup": "^1.0.0",
     "fs": "0.0.1-security",
     "gm": "^1.23.1",
+    "juxtaposejs": "^1.1.6",
     "node-fetch": "^2.6.1",
+    "remusjs": "^0.1.1",
     "sharp": "^0.28.3",
     "uuid": "^8.3.2"
   },
