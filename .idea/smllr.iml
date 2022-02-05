@@ -12,5 +12,6 @@
     <orderEntry type="library" name="dropzone" level="application" />
     <orderEntry type="library" name="bulma" level="application" />
     <orderEntry type="library" name="12925c0993" level="application" />
+    <orderEntry type="library" name="js-image-zoom" level="application" />
   </component>
 </module>

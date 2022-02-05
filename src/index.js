@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 let IS_LOCAL = true; // for Electron deployment
-if (IS_LOCAL) var { app, BrowserWindow } = require('electron');
+if (IS_LOCAL) var { app, BrowserWindow, shell } = require('electron');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (IS_LOCAL) if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -25,7 +25,13 @@ if (IS_LOCAL) var createWindow = () => {
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
+    mainWindow.webContents.on("new-window", function(event, url) {
+        event.preventDefault();
+        shell.openExternal(url);
+    });
+
 };
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

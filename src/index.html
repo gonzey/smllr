@@ -220,10 +220,10 @@
                         <option value="JPEG">JPEG</option>
                         <option value="PNG">PNG</option>
                         <option value="WEBP">WEBP</option>
-                        <option value="GIF">GIF</option>
+<!--                        <option value="GIF">GIF</option>-->
 <!--                        <option value="TIFF">TIFF</option>-->
-                        <option value="AVIF">AVIF</option>
-                        <option value="HEIF">HEIF</option>
+<!--                        <option value="AVIF">AVIF</option>-->
+<!--                        <option value="HEIF">HEIF</option>-->
                     </select>
                 </div>
 
@@ -263,18 +263,17 @@
             <div class="remus" id="main-imgs">
                 <!-- Before -->
                 <div class="card remus-element">
-                    <div class="card-image">
+                    <a href="imgs/logo-full.svg" class="card-image" id="before-image-card" target="_blank">
                         <img id="before-image" src="imgs/logo-full.svg" />
                         <!--<p class="is-size-3 is-relative"><br>BEFORE</p>-->
-                    </div>
-<!--                    <br>-->
+                    </a>
                 </div>
                 <!-- After -->
                 <div class="card remus-element">
-                    <div class="card-image">
-                        <img id="after-image" src="imgs/drag-instructions.png" />
+                    <a href="imgs/drag-instructions.png" class="card-image" id="after-image-card" target="_blank">
+                        <img class="" id="after-image" src="imgs/drag-instructions.png" />
                         <!--<br> <p class="is-size-3 is-relative"><br>AFTER</p>-->
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -299,6 +298,8 @@
             L(f.path)
             document.getElementById('before-image').src = "file://" + f.path;
             document.getElementById('after-image').src = "file://" + f.path;
+            document.getElementById('before-image-card').href = "file://" + f.path;
+            document.getElementById('after-image-card').href = "file://" + f.path;
         }
     });
 
@@ -316,7 +317,7 @@
     });
 
     // Necessary variables/constants
-    const image = document.getElementById('image');
+    // const image = document.getElementById('image');
     var initial_image = true;
     let test_img = 'imgs/maxresdefault.jpg';
 
@@ -511,9 +512,11 @@
             .then(async data => {
                 fs.writeFileSync(new_path, data);
                 // document.getElementById("main-input").src = `${desktopDir}/${random_uuid}.${format}`;
-                upload_area.style.backgroundImage = `url(${await URL.createObjectURL(
-                    new Blob([data.buffer])
-                )})`
+                // let new_name =  URL.createObjectURL(new Blob([data.buffer]));
+                // upload_area.style.backgroundImage = `url(${new_name})`;
+                // L('newname:' + new_name.substr(4))
+                L(new_path)
+                document.getElementById('after-image-card').href = new_path;
             })
             .catch(err => {
                 L(err);
