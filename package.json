@@ -50,9 +50,12 @@
     "gm": "^1.23.1",
     "js-image-zoom": "^0.7.0",
     "juxtaposejs": "^1.1.6",
-    "node-fetch": "^2.6.1",
+    "meow": "^10.1.2",
+    "nugget": "^2.0.1",
+    "pretty-bytes": "^5.6.0",
     "remusjs": "^0.1.1",
-    "sharp": "^0.28.3",
+    "sharp": "^0.30.0",
+    "trim-newlines": "^4.0.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -61,6 +64,6 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "13.1.2"
+    "electron": "^17.0.0"
   }
 }
