@@ -1,0 +1,1 @@
+Run "npm start" from inside of smllr folder
