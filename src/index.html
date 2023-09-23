@@ -22,15 +22,19 @@
     html {
         font-family: 'Nunito Sans', sans-serif;
         zoom: 80%;
-        background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%);
+        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%);*/
+        background-color: rgb(31, 31, 31);
+        color: white;
+        font-size: 1.5em;
     }
 
     .float-right {
-        float:right !important;
+        float: right !important;
     }
 
     body {
-        background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%)
+        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%)*/
+        background-color: rgb(31, 31, 31);
     }
 
     button {
@@ -40,7 +44,7 @@
     #logo-img {
         width: 3vh;
         position: relative;
-        top:0px
+        top: 0px
     }
 
     #app-name {
@@ -80,6 +84,10 @@
     p {
         color: white;
     }
+
+    img {
+        background-color: black;
+    }
 </style>
 
 <body>
@@ -87,7 +95,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title">About this application</p>
+            <p class="modal-card-title">About This Application</p>
             <button aria-label="close" class="delete" id="close-modal"></button>
         </header>
         <section class="modal-card-body has-text-white has-background-black">
@@ -129,7 +137,7 @@
     <!-- User input buttons and sliders -->
     <div class="columns is-link" id="main-inputs">
         <div class=" column is-2">
-            <div class="is-black has-text-primary-light is-size-4">Options</div>
+            <div class="is-black has-text-primary-light">Options</div>
             <div class="card-content">
                 <!-- Export Format dropdown-->
                 <div class="select">
@@ -143,7 +151,7 @@
                 <br><br><hr>
 
                 <!-- Quality Range slider -->
-                <label class="has-text-primary-light is-size-4" for="quality-slider">Quality</label><br><br>
+                <label class="has-text-primary-light" for="quality-slider">Quality</label><br><br>
                 <input id="quality-slider" type="range" min="1" max="100" value="50" list="slider-steps">
                 <datalist id="slider-steps">
                     <option>1</option>
@@ -370,4 +378,3 @@
 </script>
 </body>
 </html>
-
