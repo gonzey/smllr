@@ -4,21 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width" name="viewport">
-    <title>The Cool Compression App test</title>
-
+    <title>The Compression App</title>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/12925c0993.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="remus.css">
     <script src="remus.js"></script>
-
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&family=Lexend+Tera&display=swap" rel="stylesheet">
-
     <script src="holder.js"></script>
     <script src="bulma-toast.min.js"></script>
 </head>
@@ -26,35 +21,15 @@
 <style>
     html {
         font-family: 'Nunito Sans', sans-serif;
-        /*background-color: rgb(37 37 37);*/
         zoom: 80%;
-        /*background: rgb(2,0,36);*/
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(24,0,32,1) 100%);*/
-        /*background: rgb(2,0,36);*/
         background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%);
-    }
-
-    .float-left {
-        float:left !important;
     }
 
     .float-right {
         float:right !important;
     }
 
-    .stagger-left {
-        position: relative;
-        right:30px;
-    }
-
     body {
-        /*background-color: rgb(37 37 37);*/
-        /*background: rgb(2,0,36);*/
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(35,0,46,1) 100%);*/
-        /*background: rgb(2,0,36);*/
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(24,0,32,1) 100%);*/
-        /*background: rgb(2,0,36);*/
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%);*/
         background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%)
     }
 
@@ -73,8 +48,6 @@
         position: relative;
         font-size: 3vh;
         font-family: 'Nunito Sans', sans-serif;
-        /*font-family: 'Lexend Tera', sans-serif;*/
-        /*font-family: 'Kirang Haerang', cursive;*/
     }
 
     #top-buttons {
@@ -95,63 +68,18 @@
         color: #7fff7d;
     }
 
-    /* Ensure the size of the image fits the container perfectly */
-    #image {
-        max-width: 100%;  /* This rule is very important, please don't ignore this */
-        display: block;
-    }
-
-    #upload-area {
-        padding: 50%;
-        cursor: pointer;
-        /*width:100%;*/
-        background-image: url(imgs/logo.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
-
-    #main-input {
-        opacity: 0;
-        position: absolute;
-        z-index: -1;
-    }
-
-    .card {
-        margin: 10px;
-        color: white;
-        background-color: #252525;
-        /*background-color: #170404;*/
-        /*background: rgb(12, 2, 186);*/
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgb(49, 33, 54) 100%);*/
-        /*background: rgb(49, 33, 54, 0.8);*/
-        /*border-radius: 30px;*/
-
-    }
-
-    .title {
-        color: white;
-    }
-
     input.vertical {
         -webkit-appearance: slider-vertical;
         writing-mode: bt-lr;
     }
 
-    .has-background-purple {
-        background-color: rgba(161, 19, 182, 0.2);
-    }
-
-    .has-silver-border {
-        border: 1px solid silver;
-        border-radius: 10px;
-    }
-
     #about-modal {
         z-index: 999;
-        /*background-color: darkgray;*/
     }
 
+    p {
+        color: white;
+    }
 </style>
 
 <body>
@@ -177,9 +105,7 @@
     <!-- UI Buttons -->
     <div class="column is-12" id="top-buttons">
         <button class="button is-info is-outlined is-medium float-right" id="export-button">Export</button>
-        <!-- <button class="button is-primary is-outlined is-medium float-right">Preview Changes</button>-->
-        <!--                <button class="button is-warning is-5 is-outlined is-medium float-right" id="reset-button">Reset</button>-->
-    </div>
+   </div>
 
     <div class="hero-foot">
         <nav class="tabs is-fullwidth">
@@ -192,15 +118,8 @@
                         <a>Overview</a>
                     </li>
                     <li>
-                        <a class="navbar-item has-text-white" id="about-modal-button">
-                            About
-                        </a>
+                        <a class="navbar-item has-text-white" id="about-modal-button">About</a>
                     </li>
-                    <!--                            <li>-->
-                    <!--                                <a class="navbar-item has-text-white">-->
-                    <!--                                    Settings-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
                 </ul>
             </div>
         </nav>
@@ -211,7 +130,6 @@
     <div class="columns is-link" id="main-inputs">
         <div class=" column is-2">
             <div class="is-black has-text-primary-light is-size-4">Options</div>
-
             <div class="card-content">
                 <!-- Export Format dropdown-->
                 <div class="select">
@@ -220,14 +138,8 @@
                         <option value="JPEG">JPEG</option>
                         <option value="PNG">PNG</option>
                         <option value="WEBP">WEBP</option>
-<!--                        <option value="GIF">GIF</option>-->
-<!--                        <option value="TIFF">TIFF</option>-->
-<!--                        <option value="AVIF">AVIF</option>-->
-<!--                        <option value="HEIF">HEIF</option>-->
-
                     </select>
                 </div>
-
                 <br><br><hr>
 
                 <!-- Quality Range slider -->
@@ -266,14 +178,12 @@
                 <div class="card remus-element">
                     <a href="imgs/logo-full.svg" class="card-image" id="before-image-card" target="_blank">
                         <img id="before-image" src="imgs/logo-full.svg" />
-                        <!--<p class="is-size-3 is-relative"><br>BEFORE</p>-->
                     </a>
                 </div>
                 <!-- After -->
                 <div class="card remus-element">
                     <a href="imgs/drag-instructions.png" class="card-image" id="after-image-card" target="_blank">
                         <img class="" id="after-image" src="imgs/drag-instructions.png" />
-                        <!--<br> <p class="is-size-3 is-relative"><br>AFTER</p>-->
                     </a>
                 </div>
             </div>
@@ -282,7 +192,6 @@
 </div>
 
 <script type="module">
-
     // Before/After slider
     var remus = new Remus({
         element: '.remus', // selector for main Remus container
@@ -302,6 +211,7 @@
             document.getElementById('before-image-card').href = "file://" + f.path;
             document.getElementById('after-image-card').href = "file://" + f.path;
         }
+        updateImageFormat(document.getElementById('before-image'), 'before-image-format')
     });
 
     document.addEventListener('dragover', (e) => {
@@ -317,17 +227,11 @@
         console.log('File has left the Drop Space');
     });
 
-    // Necessary variables/constants
-    // const image = document.getElementById('image');
-    var initial_image = true;
-    let test_img = 'imgs/maxresdefault.jpg';
-
     // Shortcut alternative to L used to toggle debugging logs
     const DEBUGGING = true;
     let L = (msg) => {
         if (DEBUGGING) console.log(msg);
     }
-
 
     // Launch modal into frame
     function showModal() {
@@ -335,33 +239,17 @@
         document.getElementById('about-modal').classList.add('is-active'); // TODO - make modular and remove hard-code
     }
 
-
     // Remove modal from frame
     function removeModal() {
         L('closing modal');
         document.getElementById('about-modal').classList.remove('is-active');
     }
 
-
     // Fetch the image to rotate, and call image magick
     async function UpdateDisplay(inject_at, data) {
         let injection = document.getElementById(inject_at);
-
-        // Updates view with processed files
-        // injection.src = URL.createObjectURL(img_bytes);
-        injection.src = data;
+        injection.src = data; // Updates view with processed files
     }
-
-
-    // Converts image from path to bytes
-    let getBytes = async function (path) {
-        const image = await fetch(path);
-        const array_buffer = await image.arrayBuffer();
-        const image_bytes = new Uint8Array(array_buffer);
-
-        return image_bytes;
-    }
-
 
     // Performs necessary operations to output altered photo
     async function Export() {
@@ -371,8 +259,8 @@
         Quality();
     }
 
-
     // Compress image from path by strength -------------------------------------------------------------------
+    //TODO - sanitize the input image path because it breaks if there are spaces. perhaps, const decodedPath = decodeURIComponent(f.path);
     async function Quality() {
         const inject_at = "after-image";
         const path = getImagePath();
@@ -381,106 +269,32 @@
 
         // slider value is quality(100%) so we convert to strength(0%)
         if(quality != null) {
-            // strength = Math.abs(quality - 100);
             strength = quality;
         }
-        // const img_bytes = await getBytes(path);
-
         const fs = require('fs');
         let old_bytes = fs.readFileSync(path)
         console.log(old_bytes);
         let new_path = await reduceQuality(old_bytes, strength);
         let new_bytes = fs.readFileSync(new_path);
         L(new_bytes)
-
         var binaryData = [];
-        // binaryData.push(old_bytes);
         binaryData.push(new_bytes);
-
         let data = window.URL.createObjectURL(new Blob(binaryData, {type: "application/zip"}))
 
         // Uses Sharp and updates view
         await UpdateDisplay(inject_at, data);
     }
 
-
-    // Update onscreen UI elements
-    let setStageQuality = () => {
-        // Setup stage
-        clearStage();
-        document.getElementById('quality-list-item').classList.add('is-active');
-
-        // Create input Bar
-        const input_bar = document.createElement('input');
-        input_bar.type = "text";
-        input_bar.id = "quality-input";
-        input_bar.placeholder = "Enter desired compression (0-100%)";
-        input_bar.className = "input is-primary is-medium is-rounded";
-        input_bar.name = "quality-option";
-        document.getElementById('main-title').appendChild(input_bar);
-
-        // Create quality Button
-        const quality_button = document.createElement('button');
-        quality_button.className = "button is-primary is-rounded is-medium is-outlined";
-        quality_button.id = "quality-button";
-        quality_button.innerHTML = "Adjust Image Quality";
-        quality_button.name = "quality-option";
-        quality_button.addEventListener('click', Quality);
-        document.getElementById('main-title').appendChild(quality_button);
-    }
-
-
-    let clearStage = () => {
-        document.getElementById('main-title').innerHTML = "";
-    }
-
-
-    let resetImage = () => {
-        if (initial_image == true) {
-            document.getElementById("main-input").src = test_img;
-        } else {
-            L(file_uploaded);
-            document.getElementById("main-input").src = file_uploaded;
-        }
-        // document.getElementById("main-input").src = test_img;
-        // const path = document.getElementById("main-input").src;
-        // const inject_at = "main-title";
-        // const img_bytes = await getBytes(path);
-        // const filename = path.split('\\').pop().split('/').pop();
-    }
-
-
     const fetch = require("node-fetch");
     const {v4: uuidv4} = require('uuid');
-
-    // https://chrisfrew.in/blog/saving-images-in-node-js-using-fetch-with-array-buffer-and-buffer/
-    async function savePhotoFromURL(photo_url) {
-        const response = await fetch(photo_url);
-        const arrayBuffer = await response.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
-        return buffer;
-    }
-
-
     // Returns full path of the image selected
     function getImagePath() {
         let main_input = document.getElementById('before-image');
         L(main_input)
         const filename = main_input.src.split('\\').pop().split('/').pop();
-
-        // const filename = main_input.value.split('\\').pop().split('/').pop();
         const full_path = `${TEMP_OUT}/${filename}`;
         return full_path;
     }
-
-
-    const toBase64 = file => new Promise((resolve, reject) => { // (https://stackoverflow.com/questions/36280818/how-to-convert-file-to-base64-in-javascript)
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-
 
     // Location used to output files to desktop regardless of Operating System
     const homeDir = require('os').homedir();
@@ -499,11 +313,6 @@
         if (format == null) format = "webp";
         let new_path = `${desktopDir}/${random_uuid}.${format}`;
 
-        // let quality = Math.abs(strength - 100);
-        // let photo_url = "https://picsum.photos/200/300"
-        // let obj = await savePhotoFromURL(photo_url);
-        // let obj = old_bytes
-
         // https://sharp.pixelplumbing.com/api-output#toformat
         let out_file = await Sharp(obj)
             .toFormat(format, {
@@ -512,10 +321,6 @@
             .toBuffer()
             .then(async data => {
                 fs.writeFileSync(new_path, data);
-                // document.getElementById("main-input").src = `${desktopDir}/${random_uuid}.${format}`;
-                // let new_name =  URL.createObjectURL(new Blob([data.buffer]));
-                // upload_area.style.backgroundImage = `url(${new_name})`;
-                // L('newname:' + new_name.substr(4))
                 L(new_path)
                 document.getElementById('after-image-card').href = new_path;
             })
@@ -527,20 +332,37 @@
     }
 
     // EVENT LISTENERS AT START
-    // document.getElementById('quality-list-item').addEventListener('click', setStageQuality);
     document.getElementById('about-modal-button').addEventListener('click', showModal);
     document.getElementById('close-modal').addEventListener('click', removeModal);
-    // document.getElementById('reset-button').addEventListener('click', resetImage);
     document.getElementById('export-button').addEventListener('click', Export);
+    document.addEventListener('DOMContentLoaded', function() {
+        window.dispatchEvent(new Event('resize'));
+    });
+
+    // Function to update the file format and display it in the DOM
+    function updateImageFormat(imageElement, formatElementId) {
+        const imageSrc = imageElement.src;
+        const format = imageSrc.substring(imageSrc.lastIndexOf(".") + 1).toUpperCase();
+        document.getElementById(formatElementId).textContent = `Image Format: ${format}`;
+    }
+
+    // Function to update the selected format from the Options dropdown
+    function updateSelectedFormat() {
+        const selectedFormat = document.getElementById("format-dropdown").value;
+        document.getElementById("after-image-format").textContent = `Selected Format: ${selectedFormat}`;
+    }
+
+    // Add an event listener to the format dropdown to update the selected format
+    document.getElementById("format-dropdown").addEventListener("change", updateSelectedFormat);
+
+    // Update image format initially
+    updateImageFormat(document.getElementById("before-image"), "before-image-format");
+    updateSelectedFormat(); // Initialize the selected format
 
     //Sharp test code
     let upload_area = document.getElementById('after-image');
     let file_uploaded;
-
-    // document.getElementById('main-input').addEventListener('change', Quality);
-
 </script>
 </body>
-
 </html>
 
