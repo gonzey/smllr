@@ -131,7 +131,7 @@
 
     <!-- User input buttons and sliders -->
     <div class="columns is-link" id="main-inputs">
-        <div class=" column is-2">
+        <div class=" column is-4">
             <div class="is-black has-text-primary-light">Options</div>
             <div class="card-content">
                 <!-- Export Format dropdown-->
@@ -178,10 +178,10 @@
             </div>
 
             <!-- Before Image Format -->
-            <p id="before-image-format">Before Image Format: N/A</p>
+            <p id="before-image-format">Original Format: N/A</p>
             <br>
             <!-- After Image Format -->
-            <p id="after-image-format">After Image Format: N/A</p>
+            <p id="after-image-format">New Format: N/A</p>
         </div>
 
         <!-- Before/After Image cards -->
@@ -356,13 +356,13 @@
     function updateImageFormat(imageElement, formatElementId) {
         const imageSrc = imageElement.src;
         const format = imageSrc.substring(imageSrc.lastIndexOf(".") + 1).toUpperCase();
-        document.getElementById(formatElementId).textContent = `Image Format: ${format}`;
+        document.getElementById(formatElementId).textContent = `Original Format: ${format}`;
     }
 
     // Function to update the selected format from the Options dropdown
     function updateSelectedFormat() {
         const selectedFormat = document.getElementById("format-dropdown").value;
-        document.getElementById("after-image-format").textContent = `Selected Format: ${selectedFormat}`;
+        document.getElementById("after-image-format").textContent = `New Format: ${selectedFormat}`;
     }
 
     // Add an event listener to the format dropdown to update the selected format
