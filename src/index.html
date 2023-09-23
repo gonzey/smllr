@@ -221,11 +221,11 @@
                 for (const f of event.dataTransfer.files) {
                     // Using the path attribute to get absolute file path and update main image
                     L('File Path of dragged files: ', f.path)
-                    L(f.path)
                     document.getElementById('before-image').src = "file://" + f.path;
                     document.getElementById('after-image').src = "file://" + f.path;
                     document.getElementById('before-image-card').href = "file://" + f.path;
                     document.getElementById('after-image-card').href = "file://" + f.path;
+                    selectedImagePath = f.path;
                 }
                 updateImageFormat(document.getElementById('before-image'), 'before-image-format')
             });
@@ -303,13 +303,17 @@
 
             const fetch = require("node-fetch");
             const {v4: uuidv4} = require('uuid');
+            let selectedImagePath; // holds the full path of the selected image
+
             // Returns full path of the image selected
             function getImagePath() {
-                let main_input = document.getElementById('before-image');
-                L(main_input)
-                const filename = main_input.src.split('\\').pop().split('/').pop();
-                const full_path = `${TEMP_OUT}/${filename}`;
-                return full_path;
+                 if (selectedImagePath) {
+                    return selectedImagePath;
+                } else {
+                    // Handle error: No image has been selected
+                    console.error("No image has been selected.");
+                    return null;
+                }
             }
 
             // Location used to output files to desktop regardless of Operating System
