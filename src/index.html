@@ -24,7 +24,7 @@
         zoom: 70%;
         background-color: rgb(31, 31, 31);
         color: white;
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 
     body {
@@ -82,12 +82,8 @@
         background-color: rgb(0 0 0);
     }
 
-    #org-info {
-        background-color: rgba(0,0,0,0.5);
-    }
-
     #before-image-format {
-        margin: 25px;
+        margin-bottom: 25px;
     }
 
     #format-dropdown {
@@ -100,8 +96,7 @@
     }
 
     #quality {
-        margin-top: 25px;
-
+        margin: 35px;
     }
 </style>
 
@@ -147,7 +142,8 @@
     <div class="columns is-link" id="main-inputs">
         <div class="is-4">
             <!-- Before Image Format -->
-            <p id="before-image-format">Old Format: N/A</p>
+            <p> Old Format </p>
+            <p id="before-image-format">N/A</p>
             <div id="new-format-label" class="is-black has-text-primary-light">New Format</div>
             <!-- Export Format dropdown-->
             <div class="select">
@@ -161,7 +157,7 @@
 
             <div id="quality">
                 <!-- Quality Range slider -->
-                <label id="quality-slider-label" class="has-text-primary-light" for="quality-slider">Quality</label>
+                <p>Quality</p>
                 <input id="quality-slider" type="range" min="1" max="100" value="50" list="slider-steps">
                 <datalist id="slider-steps">
                     <option>1</option>
@@ -280,7 +276,7 @@
     }
 
     // Compress image from path by strength -------------------------------------------------------------------
-    //TODO - sanitize the input image path because it breaks if there are spaces. perhaps, const decodedPath = decodeURIComponent(f.path);
+    //TODO - Done?   sanitize the input image path because it breaks if there are spaces. perhaps, const decodedPath = decodeURIComponent(f.path);
     async function Quality() {
         const inject_at = "after-image";
         const path = getImagePath();
@@ -363,13 +359,13 @@
     function updateImageFormat(imageElement, formatElementId) {
         const imageSrc = imageElement.src;
         const format = imageSrc.substring(imageSrc.lastIndexOf(".") + 1).toUpperCase();
-        document.getElementById(formatElementId).textContent = `Old Format: ${format}`;
+        document.getElementById(formatElementId).textContent = `${format}`;
     }
 
     // Function to update the selected format from the Options dropdown
     function updateSelectedFormat() {
         const selectedFormat = document.getElementById("format-dropdown").value;
-        document.getElementById("after-image-format").textContent = `New Format: ${selectedFormat}`;
+        document.getElementById("after-image-format").textContent = `New Format ${selectedFormat}`;
     }
 
     // Add an event listener to the format dropdown to update the selected format
