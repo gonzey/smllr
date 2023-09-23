@@ -81,6 +81,14 @@
     img {
         background-color: black;
     }
+
+    #main-imgs {
+        background-color: rgb(0 0 0);
+    }
+
+    .card {
+        background-color: rgb(0 0 0);
+    }
 </style>
 
 <body>
@@ -129,10 +137,10 @@
                 <!-- Export Format dropdown-->
                 <div class="select">
                     <select id="format-dropdown">
-                        <option value="none" selected disabled hidden>Format</option>
+                        <option value="none" hidden>Format</option>
                         <option value="JPEG">JPEG</option>
                         <option value="PNG">PNG</option>
-                        <option value="WEBP">WEBP</option>
+                        <option value="WEBP" selected disabled>WEBP</option>
                     </select>
                 </div>
                 <br><br><hr>
@@ -168,6 +176,12 @@
             <div class="column is-12" id="top-buttons">
                 <button class="button is-info is-outlined" id="export-button">Export</button>
             </div>
+
+            <!-- Before Image Format -->
+            <p id="before-image-format">Before Image Format: N/A</p>
+            <br>
+            <!-- After Image Format -->
+            <p id="after-image-format">After Image Format: N/A</p>
         </div>
 
         <!-- Before/After Image cards -->
@@ -187,11 +201,6 @@
                 </div>
             </div>
         </section>
-        <!-- Before Image Format -->
-        <p id="before-image-format">Before Image Format: N/A</p>
-
-        <!-- After Image Format -->
-        <p id="after-image-format">After Image Format: N/A</p>
     </div>
 </div>
 
