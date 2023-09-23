@@ -27,10 +27,6 @@
         font-size: 1.5em;
     }
 
-    .float-right {
-        float: right !important;
-    }
-
     body {
         background-color: rgb(31, 31, 31);
     }
@@ -45,10 +41,6 @@
         font-size: 1.5em;
         font-family: 'Nunito Sans', sans-serif;
         color: white;
-    }
-
-    #top-buttons {
-        margin: 10px;
     }
 
     #about-modal-title {
@@ -88,6 +80,28 @@
 
     .card {
         background-color: rgb(0 0 0);
+    }
+
+    #org-info {
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    #before-image-format {
+        margin: 25px;
+    }
+
+    #format-dropdown {
+        background-color: #333333;
+        color: white;
+    }
+
+    #after-image-format {
+        background-color: #333333;
+    }
+
+    #quality {
+        margin-top: 25px;
+
     }
 </style>
 
@@ -131,22 +145,23 @@
 
     <!-- User input buttons and sliders -->
     <div class="columns is-link" id="main-inputs">
-        <div class=" column is-4">
-            <div class="is-black has-text-primary-light">Options</div>
-            <div class="card-content">
-                <!-- Export Format dropdown-->
-                <div class="select">
-                    <select id="format-dropdown">
-                        <option value="none" hidden>Format</option>
-                        <option value="JPEG">JPEG</option>
-                        <option value="PNG">PNG</option>
-                        <option value="WEBP" selected disabled>WEBP</option>
-                    </select>
-                </div>
-                <br><br><hr>
+        <div class="is-4">
+            <!-- Before Image Format -->
+            <p id="before-image-format">Old Format: N/A</p>
+            <div id="new-format-label" class="is-black has-text-primary-light">New Format</div>
+            <!-- Export Format dropdown-->
+            <div class="select">
+                <select id="format-dropdown">
+<!--                    <option value="none" hidden disabled>Format</option>-->
+                    <option value="JPEG">JPEG</option>
+                    <option value="PNG">PNG</option>
+                    <option value="WEBP" selected>WEBP</option>
+                </select>
+            </div>
 
+            <div id="quality">
                 <!-- Quality Range slider -->
-                <label class="has-text-primary-light" for="quality-slider">Quality</label><br><br>
+                <label id="quality-slider-label" class="has-text-primary-light" for="quality-slider">Quality</label>
                 <input id="quality-slider" type="range" min="1" max="100" value="50" list="slider-steps">
                 <datalist id="slider-steps">
                     <option>1</option>
@@ -172,16 +187,8 @@
                     <option>100</option>
                 </datalist>
             </div>
-            <!-- UI Buttons -->
-            <div class="column is-12" id="top-buttons">
-                <button class="button is-info is-outlined" id="export-button">Export</button>
-            </div>
+            <button class="button is-success" id="export-button">Export</button>
 
-            <!-- Before Image Format -->
-            <p id="before-image-format">Original Format: N/A</p>
-            <br>
-            <!-- After Image Format -->
-            <p id="after-image-format">New Format: N/A</p>
         </div>
 
         <!-- Before/After Image cards -->
@@ -285,7 +292,7 @@
             strength = quality;
         }
         const fs = require('fs');
-        let old_bytes = fs.readFileSync(path)
+        let old_bytes = fs.readFileSync(decodeURIComponent(path))
         console.log(old_bytes);
         let new_path = await reduceQuality(old_bytes, strength);
         let new_bytes = fs.readFileSync(new_path);
@@ -356,7 +363,7 @@
     function updateImageFormat(imageElement, formatElementId) {
         const imageSrc = imageElement.src;
         const format = imageSrc.substring(imageSrc.lastIndexOf(".") + 1).toUpperCase();
-        document.getElementById(formatElementId).textContent = `Original Format: ${format}`;
+        document.getElementById(formatElementId).textContent = `Old Format: ${format}`;
     }
 
     // Function to update the selected format from the Options dropdown
