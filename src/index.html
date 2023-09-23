@@ -21,8 +21,7 @@
 <style>
     html {
         font-family: 'Nunito Sans', sans-serif;
-        zoom: 80%;
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%);*/
+        zoom: 70%;
         background-color: rgb(31, 31, 31);
         color: white;
         font-size: 1.5em;
@@ -33,7 +32,6 @@
     }
 
     body {
-        /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(19,0,25,1) 100%)*/
         background-color: rgb(31, 31, 31);
     }
 
@@ -41,17 +39,12 @@
         margin: 10px;
     }
 
-    #logo-img {
-        width: 3vh;
-        position: relative;
-        top: 0px
-    }
-
     #app-name {
         text-align: center;
         position: relative;
-        font-size: 3vh;
+        font-size: 1.5em;
         font-family: 'Nunito Sans', sans-serif;
+        color: white;
     }
 
     #top-buttons {
@@ -101,8 +94,7 @@
         <section class="modal-card-body has-text-white has-background-black">
             <img src="imgs/logo.png"/>
             <div class='has-text-white app-name' id="about-modal-title">smaller</div>
-
-            An image compressor created by David Bodey and Eric Gonzalez.
+            An image compressor created by Eric Gonzalez and David Bodey.
             <br/><br/>Powered by:<br/>
             Electron. NodeJS. Bulma. HTML. JS. CSS. Sharp. Remus.<br/> <br/>
         </section>
@@ -110,17 +102,12 @@
 </div>
 
 <div class="container has-text-centered is-12">
-    <!-- UI Buttons -->
-    <div class="column is-12" id="top-buttons">
-        <button class="button is-info is-outlined is-medium float-right" id="export-button">Export</button>
-   </div>
-
     <div class="hero-foot">
         <nav class="tabs is-fullwidth">
             <div class="container">
                 <ul>
                     <li>
-                        <div id="app-name"> <img id="logo-img" src="imgs/logo.png">smaller</div>
+                        <div id="app-name">smaller</div>
                     </li>
                     <li class="is-active">
                         <a>Overview</a>
@@ -176,6 +163,10 @@
                     <option>95</option>
                     <option>100</option>
                 </datalist>
+            </div>
+            <!-- UI Buttons -->
+            <div class="column is-12" id="top-buttons">
+                <button class="button is-info is-outlined" id="export-button">Export</button>
             </div>
         </div>
 
