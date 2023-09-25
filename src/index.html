@@ -469,7 +469,7 @@
         const filename = main_input.src.split('\\').pop().split('/').pop();
 
         // const filename = main_input.value.split('\\').pop().split('/').pop();
-        const full_path = `${TEMP_OUT}/${filename}`;
+        const full_path = `${TEMP_OUT}\\${filename}`;
         return full_path;
     }
 
@@ -484,7 +484,7 @@
 
     // Location used to output files to desktop regardless of Operating System
     const homeDir = require('os').homedir();
-    const desktopDir = `${homeDir}/Desktop`;
+    const desktopDir = `${homeDir}\\Desktop`;
     const TEMP_OUT = desktopDir;
 
     async function reduceQuality(obj, strength) {
@@ -497,7 +497,7 @@
 
         let format = document.getElementById("format-dropdown").value;
         if (format == null) format = "webp";
-        let new_path = `${desktopDir}/${random_uuid}.${format}`;
+        let new_path = `${desktopDir}\\${random_uuid}.${format}`;
 
         // let quality = Math.abs(strength - 100);
         // let photo_url = "https://picsum.photos/200/300"
